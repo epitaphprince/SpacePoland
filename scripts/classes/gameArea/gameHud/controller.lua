@@ -38,7 +38,7 @@ function controller:touch(event)
                 game:dispatchEvent({name = "changePlayerDirection", direction = "right"})
                 return
             end
-            if(vertical > 0) then
+            if(horizontal > 0) then
                 game:dispatchEvent({name = "changePlayerDirection", direction = "left"})
                 return
             end
