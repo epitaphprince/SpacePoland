@@ -11,7 +11,8 @@ pauseMenuLabel.x = G.centerX
 pauseMenuLabel.y = G.percentY(42)
 
 require(R.game_backButtonLargeScript)
-require(R.game_levelsListButtonLargeScript)
+require(R.game_levelsListButtonLargeScript):new({display = pauseMenu, 
+x = G.percentX(50), y = G.percentY(58), width = G.percentX(34), height = G.percentY(17)})
 require(R.game_optionsButtonLargeScript)
 
 game:addEventListener("onGameEvent", pauseMenu)

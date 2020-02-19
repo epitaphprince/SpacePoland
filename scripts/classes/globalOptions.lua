@@ -55,8 +55,18 @@ GlobalOptions =
     -- events
     getPointEvent = "getPoint",
     getMultipointEvent = "getMultipoint",
-    movePlayerEvent = "movePlayer",
+    -- player
+    movePlayerTopLeftAreaEvent = "movePlayerTopLeftArea",
+    movePlayerTopRightAreaEvent = "movePlayerTopRightArea",
+    movePlayerBottomLeftAreaEvent = "movePlayerBottomLeftArea",
+    movePlayerBottomRightAreaEvent = "movePlayerBottomRightArea",
+    -- enemy
     moveEnemyEvent = "moveEnemy",
+    moveEnemyTopLeftAreaEvent = "moveEnemyTopLeftArea",
+    moveEnemyTopRightAreaEvent = "moveEnemyTopRightArea",
+    moveEnemyBottomLeftAreaEvent = "moveEnemyBottomLeftArea",
+    moveEnemyBottomRightAreaEvent = "moveEnemyBottomRightArea",
+    -- static objects
     multipointActivationEvent = "multipointActivation",
     changeStateEvent = "changeState",
     changeInteractionEvent = "changeInteraction",
@@ -69,6 +79,10 @@ GlobalOptions =
     gameWinEvent = "gameWin",
     gameOverEvent = "gameOver",
 
+    axis = {
+        y = (G.w / 15) * 9.5,
+        x = (G.w / 15) * 7.5
+    },
     directions = {
         up = "up",
         down = "down",

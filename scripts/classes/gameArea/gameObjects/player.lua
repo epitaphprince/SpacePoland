@@ -183,7 +183,7 @@ function player:enterFrame()
             self.direction = self.nextDirection
             self:align()
             self.step = 0
-            game:dispatchEvent({name = GlobalOptions.movePlayerEvent, target = self})
+            self:dispatchMoveEvent({x = self.image.x, y = self.image.y})
         end
     end
 end
@@ -193,7 +193,7 @@ function player:changePlayerDirection(event)
         self.direction = event.direction
         self.nextDirection = event.direction
         self:resumePlayer()
-        game:dispatchEvent({name = GlobalOptions.movePlayerEvent, target = self})
+        self:dispatchMoveEvent({x = self.image.x, y = self.image.y})
     else
         local blockSize = GlobalOptions.gameElementSize
         if(self.step >= blockSize - self.speed * GlobalOptions.swipeSensitivity
@@ -201,10 +201,31 @@ function player:changePlayerDirection(event)
             self.direction = self.nextDirection
             self:align()
             self.step = 0
-            game:dispatchEvent({name = GlobalOptions.movePlayerEvent, target = self})
+            self:dispatchMoveEvent({x = self.image.x, y = self.image.y})
         else
             self.nextDirection = event.direction
         end
+    end
+end
+
+function player:dispatchMoveEvent(config)
+    local x = config.x
+    local y = config.y
+    -- top left
+    if(x <= GlobalOptions.axis.x and y <= GlobalOptions.axis.y) then
+        game:dispatchEvent({name = GlobalOptions.movePlayerTopLeftAreaEvent, target = self})
+    end
+    -- top right
+    if(x >= GlobalOptions.axis.x and y <= GlobalOptions.axis.y) then
+        game:dispatchEvent({name = GlobalOptions.movePlayerTopRightAreaEvent, target = self})
+    end
+    -- bottom left
+    if(x <= GlobalOptions.axis.x and y >= GlobalOptions.axis.y) then
+        game:dispatchEvent({name = GlobalOptions.movePlayerBottomLeftAreaEvent, target = self})
+    end
+    -- bottom right
+    if(x >= GlobalOptions.axis.x and y >= GlobalOptions.axis.y) then
+        game:dispatchEvent({name = GlobalOptions.movePlayerBottomRightAreaEvent, target = self})
     end
 end
 

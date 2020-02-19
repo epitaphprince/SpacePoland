@@ -7,8 +7,8 @@ function levelsListButtonLarge:initialize(params)
     local config = {
         defaultImage = R.game_levelsListButtonLarge,
         display = params.display,
-        width = G.percentX(25),
-        height = G.percentX(25),
+        width = params.width or G.percentX(25),
+        height = params.height or G.percentX(25),
         x = params.x,
         y = params.y
     }

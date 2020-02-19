@@ -143,7 +143,7 @@ function enemy:enterFrame()
             self:align()
             self.step = 0
             self.changeDirectionStep = self.changeDirectionStep - 1
-            game:dispatchEvent({name = GlobalOptions.moveEnemyEvent, target = self})
+            self:dispatchMoveEvent({x = self.image.x, y = self.image.y})
         end
 
         if(self.changeDirectionStep == 0) then
@@ -151,6 +151,28 @@ function enemy:enterFrame()
             self.image.directions = table.copy({"left", "right", "up", "down"})
             self:getNextDirection()
         end
+    end
+end
+
+function enemy:dispatchMoveEvent(config)
+    local x = config.x
+    local y = config.y
+    game:dispatchEvent({name = GlobalOptions.moveEnemyEvent, target = self})
+    -- top left
+    if(x <= GlobalOptions.axis.x and y <= GlobalOptions.axis.y) then
+        game:dispatchEvent({name = GlobalOptions.moveEnemyTopLeftAreaEvent, target = self})
+    end
+    -- top right
+    if(x >= GlobalOptions.axis.x and y <= GlobalOptions.axis.y) then
+        game:dispatchEvent({name = GlobalOptions.moveEnemyTopRightAreaEvent, target = self})
+    end
+    -- bottom left
+    if(x <= GlobalOptions.axis.x and y >= GlobalOptions.axis.y) then
+        game:dispatchEvent({name = GlobalOptions.moveEnemyBottomLeftAreaEvent, target = self})
+    end
+    -- bottom right
+    if(x >= GlobalOptions.axis.x and y >= GlobalOptions.axis.y) then
+        game:dispatchEvent({name = GlobalOptions.moveEnemyBottomRightAreaEvent, target = self})
     end
 end
 
@@ -290,7 +312,7 @@ end
 
 function enemy:changeEnemyDirection(event)
     self.direction = event.direction
-    game:dispatchEvent({name = GlobalOptions.moveEnemyEvent, target = self})
+    self:dispatchMoveEvent({x = self.image.x, y = self.image.y})
 end
 
 function enemy:onGameEvent(event)

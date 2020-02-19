@@ -204,7 +204,6 @@ resources.game_pointScript = gameScripts .. "gameObjects.point"
 
 resources.game_pauseMenuScript = gameScripts .. "pauseMenu"
 resources.game_backButtonLargeScript = gameScripts .. "pauseMenu.backButtonLarge"
-resources.game_levelsListButtonLargeScript = gameScripts .. "pauseMenu.levelsListButtonLarge"
 resources.game_optionsButtonLargeScript = gameScripts .. "pauseMenu.optionsButtonLarge"
 
 resources.game_bonusesSelectMenuScript = gameScripts .. "bonusesSelectMenu"
